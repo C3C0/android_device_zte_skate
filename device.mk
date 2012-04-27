@@ -58,12 +58,13 @@ PRODUCT_COPY_FILES := \
         device/zte/skate/AudioFilter.csv:system/etc/AudioFilter.csv \
         device/zte/skate/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
         device/zte/skate/media_profiles.xml:system/etc/media_profiles.xml \
+        device/zte/skate/prebuilt/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc \
+        device/zte/skate/prebuilt/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
         device/zte/skate/prebuilt/start_usb0.sh:system/etc/start_usb0.sh \
         device/zte/skate/gps.conf:system/etc/gps.conf
 
 # Bluetooth configuration files
 PRODUCT_COPY_FILES += \
-        device/zte/skate/init.bt.sh:system/etc/init.bt.sh \
         system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
 
 # WiFi
@@ -106,5 +107,4 @@ PRODUCT_COPY_FILES += \
 endif
 
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
-#$(call inherit-product, frameworks/base/build/phone-hdpi-dalvik-heap.mk)
 $(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
