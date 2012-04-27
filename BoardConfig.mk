@@ -32,8 +32,8 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_ui.c
 TARGET_RECOVERY_INITRC := device/zte/skate/recovery/recovery.rc
 
-TARGET_KERNEL_SOURCE := kernel/zte/zte-kernel-msm7x27
-TARGET_KERNEL_CONFIG := cyanogen_skate_defconfig
+TARGET_KERNEL_SOURCE := kernel/zte/skate
+TARGET_KERNEL_CONFIG := skate_ics_defconfig
 
 BOARD_KERNEL_BASE := 0x02600000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=skate console=null
