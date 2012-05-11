@@ -82,6 +82,7 @@ PRODUCT_COPY_FILES += \
 endif
 
 PRODUCT_COPY_FILES := \
+	device/zte/skate/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
         device/zte/skate/init.skate.rc:root/init.skate.rc \
         device/zte/skate/init.skate.usb.rc:root/init.skate.usb.rc \
         device/zte/skate/ueventd.skate.rc:root/ueventd.skate.rc \
