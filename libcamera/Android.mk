@@ -50,6 +50,6 @@ LOCAL_SHARED_LIBRARIES := liblog libdl libutils libcamera_client libbinder libcu
 LOCAL_C_INCLUDES       := frameworks/base/services \
                           frameworks/base/include \
                           hardware/libhardware/include \
-                          hardware/qcom/display/libgralloc
+                          hardware
 
 include $(BUILD_SHARED_LIBRARY)
