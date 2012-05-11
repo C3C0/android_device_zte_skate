@@ -45,7 +45,7 @@ LOCAL_MODULE         := camera.$(TARGET_BOARD_PLATFORM)
 LOCAL_SRC_FILES      := cameraHal.cpp
 LOCAL_PRELINK_MODULE := false
 
-LOCAL_SHARED_LIBRARIES := liblog libdl libutils libcamera_client libbinder libcutils libhardware libcamera
+LOCAL_SHARED_LIBRARIES := liblog libdl libutils libcamera_client libbinder libcutils libhardware libcamera libui
 
 LOCAL_C_INCLUDES       := frameworks/base/services \
                           frameworks/base/include \

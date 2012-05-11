@@ -30,17 +30,32 @@ PRODUCT_PACKAGES := \
         sensors.skate \
         librpc \
         SkateParts \
-        libmm-omxcore \
-        libOmxCore \
-        libOmxVdec \
-        libOmxVenc \
-        libstagefrighthw \
         dexpreopt \
-        camera.msm7x27 \
-        gralloc.msm7x27 \
-        copybit.msm7x27 \
-        hwcomposer.msm7x27
+        libcamera \
+        camera.msm7x27
 
+# Display
+PRODUCT_PACKAGES += \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libQcomUI \
+    libtilerenderer \
+    libopencorehw \
+    gralloc.msm7x27 \
+    copybit.msm7x27 \
+    hwcomposer.msm7x27
+
+# QCOM OMX (core)
+PRODUCT_PACKAGES += \
+    libstagefrighthw \
+    libmm-omxcore \
+    libOmxCore \
+    libOmxVdec \
+    libOmxVenc \
+    libdivxdrmdecrypt
+
+# Audio
 PRODUCT_PACKAGES += \
         audio.primary.skate \
         audio_policy.skate \
@@ -62,7 +77,6 @@ PRODUCT_COPY_FILES := \
         device/zte/skate/prebuilt/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
         device/zte/skate/prebuilt/start_usb0.sh:system/etc/start_usb0.sh \
         device/zte/skate/gps.conf:system/etc/gps.conf
-#	device/zte/skate/prebuilt/libcamera.so:system/lib/libcamera.so
 
 # Bluetooth configuration files
 PRODUCT_COPY_FILES += \

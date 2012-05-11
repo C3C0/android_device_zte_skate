@@ -145,11 +145,7 @@ CameraHAL_CopyBuffers_Hw(int srcFd, int destFd,
 
     blit.req.dst.width     = w;
     blit.req.dst.height    = h;
-#ifndef BINDER_COMPAT
     blit.req.dst.offset    = destOffset;
-#else
-    blit.req.dst.offset    = 0;
-#endif
     blit.req.dst.memory_id = destFd;
     blit.req.dst.format    = destFormat;
 
@@ -279,12 +275,15 @@ CameraHAL_DataCb(int32_t msg_type, const android::sp<android::IMemory>& dataPtr,
       hwParameters.getPreviewSize(&previewWidth, &previewHeight);
       CameraHAL_HandlePreviewData(dataPtr, mWindow, origCamReqMemory,
                                   previewWidth, previewHeight);
-   } else if (origData_cb != NULL && origCamReqMemory != NULL) {
+   }
+
+   if (origData_cb != NULL && origCamReqMemory != NULL) {
       camera_memory_t *clientData = CameraHAL_GenClientData(dataPtr,
                                        origCamReqMemory, user);
       if (clientData != NULL) {
          LOGV("CameraHAL_DataCb: Posting data to client\n");
          origData_cb(msg_type, clientData, 0, NULL, user);
+         clientData->release(clientData);
       }
    }
 }
@@ -304,6 +303,7 @@ CameraHAL_DataTSCb(nsecs_t timestamp, int32_t msg_type,
               systemTime());
          origDataTS_cb(timestamp, msg_type, clientData, 0, user);
          qCamera->releaseRecordingFrame(dataPtr);
+         clientData->release(clientData);
       } else {
          LOGD("CameraHAL_DataTSCb: ERROR allocating memory from client\n");
       }
@@ -360,7 +360,6 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
                    preferred_size);
    }
 
-   /* C3C0 20120503
    if (!settings.get(android::CameraParameters::KEY_SUPPORTED_PREVIEW_FRAME_RATES)) {
       settings.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_FRAME_RATES,
                    preview_frame_rates);
@@ -376,7 +375,6 @@ CameraHAL_FixupParams(android::CameraParameters &settings)
       settings.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_FPS_RANGE,
                    frame_rate_range);
    }
-   */
 }
 
 /* Hardware Camera interface handlers. */
@@ -452,9 +450,11 @@ qcamera_start_preview(struct camera_device * device)
    LOGV("qcamera_start_preview: Preview enabled:%d msg enabled:%d\n",
         qCamera->previewEnabled(),
         qCamera->msgTypeEnabled(CAMERA_MSG_PREVIEW_FRAME));
+
    if (!qCamera->msgTypeEnabled(CAMERA_MSG_PREVIEW_FRAME)) {
       qCamera->enableMsgType(CAMERA_MSG_PREVIEW_FRAME);
    }
+
    return qCamera->startPreview();
 }
 
@@ -468,6 +468,7 @@ qcamera_stop_preview(struct camera_device * device)
    if (qCamera->msgTypeEnabled(CAMERA_MSG_PREVIEW_FRAME)) {
       qCamera->disableMsgType(CAMERA_MSG_PREVIEW_FRAME);
    }
+
    return qCamera->stopPreview();
 }
 
@@ -496,6 +497,7 @@ qcamera_start_recording(struct camera_device * device)
    /* TODO: Remove hack. */
    qCamera->enableMsgType(CAMERA_MSG_VIDEO_FRAME);
    qCamera->startRecording();
+
    return NO_ERROR;
 }
 
@@ -557,6 +559,7 @@ qcamera_take_picture(struct camera_device * device)
                          CAMERA_MSG_COMPRESSED_IMAGE);
 
    qCamera->takePicture();
+
    return NO_ERROR;
 }
 
@@ -607,7 +610,7 @@ qcamera_send_command(struct camera_device * device, int32_t cmd,
 {
    LOGV("qcamera_send_command: cmd:%d arg0:%d arg1:%d\n",
         cmd, arg0, arg1);
-   return NO_ERROR;
+   return qCamera->sendCommand(cmd, arg0, arg1);
 }
 
 void
@@ -644,6 +647,7 @@ camera_device_close(hw_device_t* device)
    }
    return rc;
 }
+
 
 int
 qcamera_device_open(const hw_module_t* module, const char* name,
@@ -698,5 +702,4 @@ qcamera_device_open(const hw_module_t* module, const char* name,
    *device = &camera_device->common;
    return NO_ERROR;
 }
-
 
