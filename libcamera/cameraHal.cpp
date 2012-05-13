@@ -28,7 +28,6 @@
 #include <dlfcn.h>
 
 #define NO_ERROR 0
-//#define LOGV LOGI
 #define GRALLOC_USAGE_PMEM_PRIVATE_ADSP GRALLOC_USAGE_PRIVATE_0
 #define MSM_COPY_HW 1
 #define HWA 1

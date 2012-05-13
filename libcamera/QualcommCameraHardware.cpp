@@ -176,7 +176,7 @@ union zoomimage
  */
 
 static const camera_size_type preview_sizes[] = {
-    { 1280, 720 }, // 720P, reserved
+//    { 1280, 720 }, // 720P, reserved
     { 800, 480 }, // WVGA
     { 768, 432 },
     { 720, 480 },
@@ -3389,7 +3389,7 @@ status_t QualcommCameraHardware::startRecording()
     Mutex::Autolock l(&mLock);
     mReleasedRecordingFrame = false;
     if( (ret=startPreviewInternal())== NO_ERROR){
-        if( ( mCurrentTarget == TARGET_MSM7630 ) || (mCurrentTarget == TARGET_QSD8250) || (mCurrentTarget == TARGET_MSM7227) )  {
+        if( ( mCurrentTarget == TARGET_MSM7630 ) || (mCurrentTarget == TARGET_QSD8250) )  {
             LOGV(" in startREcording : calling native_start_recording");
             native_start_recording(mCameraControlFd);
             recordingState = 1;
@@ -3458,7 +3458,7 @@ void QualcommCameraHardware::stopRecording()
 void QualcommCameraHardware::releaseRecordingFrame(
        const sp<IMemory>& mem __attribute__((unused)))
 {
-    LOGV("releaseRecordingFrame E");
+    //LOGV("releaseRecordingFrame E");
     Mutex::Autolock rLock(&mRecordFrameLock);
     mReleasedRecordingFrame = true;
     mRecordWait.signal();
@@ -3493,7 +3493,7 @@ void QualcommCameraHardware::releaseRecordingFrame(
         }
     }
 
-    LOGV("releaseRecordingFrame X");
+    //LOGV("releaseRecordingFrame X");
 }
 
 bool QualcommCameraHardware::recordingEnabled()
