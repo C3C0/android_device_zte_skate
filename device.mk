@@ -58,10 +58,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libstagefrighthw \
     libmm-omxcore \
-    libOmxCore \
-    libOmxVdec \
-    libOmxVenc \
-    libdivxdrmdecrypt
+    libOmxCore
 
 # Audio
 PRODUCT_PACKAGES += \
