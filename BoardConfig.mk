@@ -43,7 +43,7 @@ TARGET_BOARD_PLATFORM := msm7x27
 TARGET_BOOTLOADER_BOARD_NAME := skate
 
 BOARD_EGL_CFG := device/zte/skate/egl.cfg
-
+BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
 USE_OPENGL_RENDERER := true
 
 # dev:    size   erasesize  name
