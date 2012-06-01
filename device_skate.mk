@@ -111,6 +111,12 @@ PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/etc/fw_4319_apsta.bin:system/etc/fw_4319_apsta.bin \
     device/zte/skate/prebuilt/etc/nv_4319.txt:system/etc/nv_4319.txt
 
+# Goo Manager support
+ifdef ENABLE_GOO
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/app/GooManager.apk:system/app/GooManager.apk
+endif    
+
 # Skate uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
 
@@ -133,3 +139,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     ro.media.dec.jpeg.memcap=20000000 \
     ro.opengles.version=131072
+
+# Goo Manager support
+ifdef ENABLE_GOO
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.goo.board=skate \
+    ro.goo.developerid=C3C0 \
+    ro.goo.version=$(shell date +%Y%m%d) \
+    ro.goo.rom=cm7skate
+endif
