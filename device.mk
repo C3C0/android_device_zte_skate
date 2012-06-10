@@ -117,4 +117,16 @@ PRODUCT_COPY_FILES += \
          frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
          packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
+# Goo Manager support
+ifdef ENABLE_GOO
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/app/GooManager.apk:system/app/GooManager.apk
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.goo.board=skate \
+    ro.goo.developerid=C3C0 \
+    ro.goo.version=$(shell date +%Y%m%d) \
+    ro.goo.rom=cm9skate
+endif
+
 $(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
