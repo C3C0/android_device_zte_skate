@@ -90,8 +90,7 @@ PRODUCT_COPY_FILES := \
         device/zte/skate/media_profiles.xml:system/etc/media_profiles.xml \
         device/zte/skate/prebuilt/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc \
         device/zte/skate/prebuilt/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
-        device/zte/skate/prebuilt/start_usb0.sh:system/etc/start_usb0.sh \
-        device/zte/skate/gps.conf:system/etc/gps.conf
+        device/zte/skate/prebuilt/start_usb0.sh:system/etc/start_usb0.sh
 
 # WiFi
 PRODUCT_COPY_FILES += \
