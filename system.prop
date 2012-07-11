@@ -5,7 +5,7 @@ ro.telephony.call_ring.multiple=false
 ro.telephony.call_ring.delay=3000
 
 wifi.interface=wlan0
-wifi.supplicant_scan_interval=15
+wifi.supplicant_scan_interval=180
 
 ro.opengles.version=131072
 ro.sf.hwrotation=180
