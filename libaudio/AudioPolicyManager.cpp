@@ -42,7 +42,7 @@ extern "C" void destroyAudioPolicyManager(AudioPolicyInterface *interface)
 {
     delete interface;
 }
-
+/*
 uint32_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strategy, bool fromCache)
 {
     uint32_t device = 0;
@@ -190,5 +190,5 @@ uint32_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strategy, boo
     ALOGV("getDeviceForStrategy() strategy %d, device %x", strategy, device);
     return device;
 }
-
+*/
 }; // namespace android_audio_legacy
