@@ -31,9 +31,15 @@ PRODUCT_PACKAGES := \
         sensors.skate \
         librpc \
         SkateParts \
+        libmm-omxcore \
+        libOmxCore \
+        libstagefrighthw \
         dexpreopt \
         libcamera \
-        camera.msm7x27
+        camera.msm7x27 \
+        copybit.msm7x27 \
+        hwcomposer.msm7x27 \
+        libQcomUI
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -41,23 +47,6 @@ PRODUCT_PACKAGES += \
         LiveWallpapersPicker \
         VisualizationWallpapers \
         librs_jni
-
-# Display
-PRODUCT_PACKAGES += \
-    libgenlock \
-    libmemalloc \
-    liboverlay \
-    libQcomUI \
-    libtilerenderer \
-    libopencorehw \
-    copybit.msm7x27 \
-    hwcomposer.msm7x27
-
-# QCOM OMX (core)
-PRODUCT_PACKAGES += \
-    libstagefrighthw \
-    libmm-omxcore \
-    libOmxCore
 
 # Audio
 PRODUCT_PACKAGES += \
