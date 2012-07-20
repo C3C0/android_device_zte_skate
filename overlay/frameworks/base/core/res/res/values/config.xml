@@ -40,7 +40,7 @@
         <item>"bnep\\d"</item>
     </string-array>
 
-     <!-- Array of ConnectivityManager.TYPE_xxxx values allowable for tethering -->
+    <!-- Array of ConnectivityManager.TYPE_xxxx values allowable for tethering -->
     <!-- Common options are [1, 4] for TYPE_WIFI and TYPE_MOBILE_DUN or
     <!== [0,1,5,7] for TYPE_MOBILE, TYPE_WIFI, TYPE_MOBILE_HIPRI and TYPE_BLUETOOTH -->
     <integer-array translatable="false" name="config_tether_upstream_types">
@@ -59,6 +59,9 @@
 
     <bool name="config_intrusiveNotificationLed">true</bool>
 
+    <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
+    <bool name="config_intrusiveBatteryLed">true</bool>
+
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 zones as follows:
 
@@ -74,8 +77,8 @@
         <item>400</item>
         <item>800</item>
         <item>1600</item>
-	<item>3000</item>
-	<item>4000</item>
+        <item>3000</item>
+        <item>4000</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -102,8 +105,8 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
-	<item>0</item>
-	<item>0</item>
+        <item>0</item>
+        <item>0</item>
     </integer-array>
 
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
@@ -116,8 +119,8 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
-	<item>0</item>
-	<item>0</item>
+        <item>0</item>
+        <item>0</item>
     </integer-array>
 
     <!-- Component name of the service providing network location support. -->
@@ -152,5 +155,12 @@
             config to 15. -->
 
     <!-- <integer name="config_deviceHardwareKeys">7</integer> -->
+
+    <!-- Values greater or equal to 0 will enable electronbeam screen-on
+         animation with the specified delay (in milliseconds), -1 will disable the animation -->
+    <integer name="config_screenOnAnimation">250</integer>
+
+    <!-- True will enable the electron beam screen-off animation. -->
+    <bool name="config_screenOffAnimation">true</bool>
 
 </resources>
