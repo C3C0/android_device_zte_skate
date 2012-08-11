@@ -31,15 +31,22 @@ PRODUCT_PACKAGES := \
         sensors.skate \
         librpc \
         SkateParts \
-        libmm-omxcore \
-        libOmxCore \
-        libstagefrighthw \
         dexpreopt \
         libcamera \
         camera.msm7x27 \
+        make_ext4fs
+
+# Display
+PRODUCT_PACKAGES += \
+        libgenlock \
+        libmemalloc \
+        liboverlay \
+        libQcomUI \
+        libtilerenderer \
+        libopencorehw \
+        gralloc.msm7x27 \
         copybit.msm7x27 \
-        hwcomposer.msm7x27 \
-        libQcomUI
+        hwcomposer.msm7x27
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -77,6 +84,7 @@ PRODUCT_COPY_FILES := \
         device/zte/skate/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt \
         device/zte/skate/media_profiles.xml:system/etc/media_profiles.xml \
         device/zte/skate/media_codecs.xml:system/etc/media_codecs.xml \
+        device/zte/skate/audio_policy.conf:system/etc/audio_policy.conf \
         device/zte/skate/prebuilt/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc \
         device/zte/skate/prebuilt/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
         device/zte/skate/prebuilt/start_usb0.sh:system/etc/start_usb0.sh \
@@ -115,7 +123,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.board=skate \
     ro.goo.developerid=C3C0 \
     ro.goo.version=$(shell date +%Y%m%d) \
-    ro.goo.rom=cm9skate
+    ro.goo.rom=cm10skate
 endif
 
 $(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
