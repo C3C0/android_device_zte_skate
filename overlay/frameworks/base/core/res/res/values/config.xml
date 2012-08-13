@@ -32,6 +32,8 @@
          the blur effect where it isn't worth the performance hit. -->
     <bool name="config_sf_slowBlur">true</bool>
 
+	<integer name="config_screenOnAnimation">0</integer>
+
     <string-array translatable="false" name="config_tether_usb_regexs">
         <item>"usb0"</item>
     </string-array>
@@ -70,12 +72,13 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
+        <item>80</item>
         <item>160</item>
         <item>400</item>
         <item>800</item>
         <item>1600</item>
-	<item>3000</item>
-	<item>4000</item>
+        <item>3000</item>
+        <item>4000</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -83,13 +86,14 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>35</item>
-        <item>75</item>
+        <item>40</item>
         <item>85</item>
         <item>100</item>
+        <item>120</item>
         <item>150</item>
         <item>190</item>
         <item>210</item>
+        <item>230</item>
     </integer-array>
 
     <!-- Array of output values for button backlight corresponding to the LUX values
@@ -102,8 +106,9 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
-	<item>0</item>
-	<item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
     </integer-array>
 
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
@@ -116,8 +121,9 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
-	<item>0</item>
-	<item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
     </integer-array>
 
     <!-- Component name of the service providing network location support. -->
@@ -136,7 +142,7 @@
 
     <!-- Boolean indicating if current platform supports quick switch-on/off of
          Bluetooth Module -->
-    <bool name="config_bluetooth_adapter_quick_switch">true</bool>
+    <bool name="config_bluetooth_adapter_quick_switch">false</bool>
 
     <string name="config_legacyUmsLunFile">/sys/devices/platform/msm_hsusb/gadget/lun0/file</string>
 

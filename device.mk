@@ -44,12 +44,6 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    libgenlock \
-    libmemalloc \
-    liboverlay \
-    libQcomUI \
-    libtilerenderer \
-    libopencorehw \
     gralloc.msm7x27 \
     copybit.msm7x27 \
     hwcomposer.msm7x27

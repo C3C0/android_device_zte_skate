@@ -65,9 +65,9 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # Wifi
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 # I know we have the bcm4319 but this is a hack to get around incompatibility
-BOARD_WLAN_DEVICE := bcm4329
+BOARD_WLAN_DEVICE := bcmdhd
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
 WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4319.bin"
 WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4319_apsta.bin"
@@ -89,16 +89,13 @@ BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 BOARD_USES_QCOM_HARDWARE := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DREFRESH_RATE=60
-
 BOARD_USES_QCOM_LIBS := true
-BOARD_USE_QCOM_PMEM := true
 
 TARGET_USES_GENLOCK := true
 TARGET_FORCE_CPU_UPLOAD := true
 TARGET_USE_OVERLAY := false
 TARGET_HAVE_BYPASS := false
 TARGET_USES_C2D_COMPOSITION := false
-TARGET_BOOTANIMATION_PRELOAD := true
 
 WITH_JIT := true
 ENABLE_JSC_JIT := true
