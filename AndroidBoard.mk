@@ -19,6 +19,8 @@ LOCAL_PATH := device/zte/skate/prebuilt
 #
 
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
+# Volume boosted one
+# TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel-volboost
 
 file := $(INSTALLED_KERNEL_TARGET)
 ALL_PREBUILT += $(file)
