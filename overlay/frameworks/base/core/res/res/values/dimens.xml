@@ -6,5 +6,8 @@
     <!-- Width of the vertical navigation bar on devices that require it --> 
     <dimen name="navigation_bar_width">42dp</dimen> 
 
+    <!-- Default target placement radius for MultiWaveView -->
+    <dimen name="multiwaveview_target_placement_radius">120dip</dimen>
+
 </resources> 
 
