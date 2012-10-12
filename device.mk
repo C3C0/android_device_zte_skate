@@ -120,7 +120,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.board=skate \
     ro.goo.developerid=C3C0 \
     ro.goo.version=$(shell date +%Y%m%d) \
-    ro.goo.rom=cm9skate
+    ro.goo.rom=pa-ics
 endif
 
 $(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
