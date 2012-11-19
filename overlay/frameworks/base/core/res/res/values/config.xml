@@ -170,4 +170,8 @@
          kill the foreground app. -->
     <integer name="config_backKillTimeout">2000</integer>
 
+    <!-- Base "touch slop" value used by ViewConfiguration as a
+         movement threshold where scrolling should begin. -->
+    <dimen name="config_viewConfigurationTouchSlop">20dp</dimen>
+
 </resources>
