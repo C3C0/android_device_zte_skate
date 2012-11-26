@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="app_name">ZTE Skate nastavenia</string>
+        <string name="prox_calibration_title_head">Kalibrácia senzora priblíženia</string>
+        <string name="prox_calibration_summary_head">Neprikrýjate senzor priblíženia počas kalibrácie</string>
+        <string name="prox_display_title_head">Zobraziť údaje senzora priblíženia</string>
+        <string name="prox_display_summary_head">Zobrazí aktuálne údaje senzora priblíženia</string>
+        <string name="toast_error">Chyba:</string>
+        <string name="back_button">Späť</string>
+        <string name="prox_restore_title_head">Obnoviť predvolené hodnoty</string>
+        <string name="prox_restore_summary_head">Odstráni súčasné hodnoty kalibrácie (vyžaduje reštart).</string>
+        <string name="delete_success">Predvolené hodnoty obnovené. Reštartujte, prosím.</string>
+        <string name="delete_error">Chyba obnovy predvolených hodnôt.</string>
+        <string name="delete_no_file">Predvolené hodnoty sa už používajú.</string>
+
+        <string name="usb_charging_title_head">USB nabíjanie</string>
+        <string name="usb_charging_summary_head">Povoliť/Zakázať USB nabíjanie</string>
+</resources>
