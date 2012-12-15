@@ -83,7 +83,8 @@ PRODUCT_COPY_FILES := \
         device/zte/skate/prebuilt/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc \
         device/zte/skate/prebuilt/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
         device/zte/skate/prebuilt/start_usb0.sh:system/etc/start_usb0.sh \
-        device/zte/skate/prebuilt/etc/init.d/05mountsdext:system/etc/init.d/05mountsdext
+        device/zte/skate/prebuilt/etc/init.d/05mountsdext:system/etc/init.d/05mountsdext \
+        device/zte/skate/prebuilt/etc/init.d/999youtube:system/etc/init.d/999youtube
 
 # WiFi
 PRODUCT_COPY_FILES += \
