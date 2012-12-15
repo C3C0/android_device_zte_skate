@@ -33,7 +33,8 @@ PRODUCT_PACKAGES := \
         SkateParts \
         dexpreopt \
         libcamera \
-        camera.msm7x27
+        camera.msm7x27 \
+        HwaSettings
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
