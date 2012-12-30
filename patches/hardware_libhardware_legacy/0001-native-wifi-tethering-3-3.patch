@@ -1,0 +1,50 @@
+From 7feeb11327aa5949e18d3a76bf692e8090bf9e63 Mon Sep 17 00:00:00 2001
+From: Peter Gregus <pete.gregus@gmail.com>
+Date: Sun, 30 Dec 2012 23:19:22 +0100
+Subject: [PATCH] Native WiFi Tethering (3/3)
+
+Change-Id: I4f3e6277acd03b44a146c34369c8d10cbf6ef6a2
+---
+ wifi/Android.mk |    4 ++++
+ wifi/wifi.c     |   10 ++++++++++
+ 2 files changed, 14 insertions(+), 0 deletions(-)
+
+diff --git a/wifi/Android.mk b/wifi/Android.mk
+index 3b89a17..fb4668c 100644
+--- a/wifi/Android.mk
++++ b/wifi/Android.mk
+@@ -40,6 +40,10 @@ ifdef WIFI_EXT_MODULE_NAME
+ LOCAL_CFLAGS += -DWIFI_EXT_MODULE_NAME=\"$(WIFI_EXT_MODULE_NAME)\"
+ endif
+ 
++ifeq ($(WIFI_DRIVER_LOADER_REUSE),true)
++    LOCAL_CFLAGS += -DWIFI_DRIVER_LOADER_REUSE
++endif
++
+ LOCAL_SRC_FILES += wifi/wifi.c
+ 
+ ifeq ($(BOARD_HAVE_SAMSUNG_WIFI),true)
+diff --git a/wifi/wifi.c b/wifi/wifi.c
+index 405d2ec..26e6efe 100644
+--- a/wifi/wifi.c
++++ b/wifi/wifi.c
+@@ -261,6 +261,16 @@ int is_wifi_driver_loaded() {
+ 
+ int wifi_load_driver()
+ {
++#ifdef WIFI_DRIVER_LOADER_REUSE
++    // C3C0: don't load driver if already loaded
++    // this will avoid doing rmmod/insmod cycle when driver module already loaded
++    if(is_wifi_driver_loaded())
++    {
++        property_set(DRIVER_PROP_NAME, "ok");
++        return 0;
++    }
++#endif
++
+ #ifdef WIFI_DRIVER_MODULE_PATH
+     char driver_status[PROPERTY_VALUE_MAX];
+     int count = 100; /* wait at most 20 seconds for completion */
+-- 
+1.7.5.4
+
