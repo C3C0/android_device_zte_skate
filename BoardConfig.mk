@@ -21,25 +21,30 @@ USE_CAMERA_STUB := true
 # Use the non-open-source parts, if they're present
 -include vendor/zte/skate/BoardConfigVendor.mk
 
+# CPU
 TARGET_CPU_ABI := armeabi-v6l
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv6-vfp
 
-TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/skate/recovery_kernel
+# Target and board properties
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+BOARD_PROVIDES_LIBRIL := true
+TARGET_BOARD_PLATFORM := msm7x27
+TARGET_BOOTLOADER_BOARD_NAME := skate
+TARGET_SPECIFIC_HEADER_PATH := device/zte/skate/include
+
+# Recovery
 BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_ui.c
 TARGET_RECOVERY_INITRC := device/zte/skate/recovery/recovery.rc
 
+# Kernel
 TARGET_KERNEL_SOURCE := kernel/zte/skate
-TARGET_KERNEL_CONFIG := skate_ics_defconfig
-BUILD_KERNEL := true
+TARGET_KERNEL_CONFIG := skate_jb_defconfig
+TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/skate/recovery_kernel
 BOARD_KERNEL_BASE := 0x02600000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=skate console=null
-
-TARGET_NO_BOOTLOADER := true
-TARGET_NO_RADIOIMAGE := true
-TARGET_BOARD_PLATFORM := msm7x27
-TARGET_BOOTLOADER_BOARD_NAME := skate
 
 # Wifi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
@@ -47,45 +52,51 @@ BOARD_WLAN_DEVICE := bcmdhd
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
-WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4319.bin"
-WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4319_apsta.bin"
+WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4319.bin"
+WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4319_apsta.bin"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4319.bin,nvram_path=/system/etc/nv_4319.txt iface_name=wlan"
 WIFI_DRIVER_MODULE_NAME := "dhd"
 
 # Touchscreen
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
+# Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
-BOARD_PROVIDES_LIBRIL := true
-
-TARGET_SPECIFIC_HEADER_PATH := device/zte/skate/include
-
+# USB mounting
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
-BOARD_USES_QCOM_HARDWARE := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DREFRESH_RATE=60 -DQCOM_ICS_COMPAT -DICS_CAMERA_BLOB
-BOARD_USES_QCOM_LIBS := true
-BOARD_NEEDS_MEMORYHEAPPMEM := true
+# Browser
+WITH_JIT := true
+HTTP := chrome
 
-BOARD_EGL_CFG := device/zte/skate/egl.cfg
-USE_OPENGL_RENDERER := true
-BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
-TARGET_USES_GENLOCK := true
+# Webkit
+ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
 
-WITH_JIT := true
-ENABLE_JSC_JIT := true
-JS_ENGINE := v8
-HTTP := chrome
-ENABLE_WEBGL := true
+# QCOM
+BOARD_USES_QCOM_HARDWARE := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_LEGACY_OMX
+BOARD_NEEDS_MEMORYHEAPPMEM := true
 
-# FM Radio
-BOARD_FM_DEVICE := si4708
-BOARD_HAVE_FM_RADIO := true
-BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO -DFM_RADIO
+# Graphics
+BOARD_EGL_CFG := device/zte/skate/egl.cfg
+USE_OPENGL_RENDERER := true
+TARGET_NO_HW_VSYNC := true
+BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_COMPAT -DQCOM_NO_SECURE_PLAYBACK
+
+# Bootanimation
+TARGET_BOOTANIMATION_USE_RGB565 := true
+
+# Fonts
+SMALLER_FONT_FOOTPRINT := true
+
+# Camera
+TARGET_DISABLE_ARM_PIE := true
+BOARD_USES_LEGACY_CAMERA := true
 
 # dev:    size   erasesize  name
 # mtd0: 00500000 00020000 "recovery"

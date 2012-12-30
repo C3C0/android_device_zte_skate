@@ -21,60 +21,75 @@
 
 DEVICE_PACKAGE_OVERLAYS := device/zte/skate/overlay
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
-$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
+# Graphics
 PRODUCT_PACKAGES := \
+        gralloc.msm7x27 \
+        copybit.msm7x27
+
+# OMX
+PRODUCT_PACKAGES += \
+        libmm-omxcore \
+        libOmxCore \
+        libstagefrighthw
+
+# Camera
+PRODUCT_PACKAGES += \
+        camera.msm7x27
+
+# GPS
+PRODUCT_PACKAGES += \
+        librpc
+
+# Skate specific
+PRODUCT_PACKAGES += \
         lights.skate \
         sensors.skate \
-        librpc \
-        SkateParts \
-        dexpreopt \
-        libcamera \
-        camera.msm7x27 \
-        make_ext4fs
-
-# Display
-PRODUCT_PACKAGES += \
-        libgenlock \
-        libmemalloc \
-        liboverlay \
-        libQcomUI \
-        libtilerenderer \
-        libopencorehw \
-        gralloc.msm7x27 \
-        copybit.msm7x27 \
-        hwcomposer.msm7x27
-
-# Live Wallpapers
-PRODUCT_PACKAGES += \
-        LiveWallpapers \
-        LiveWallpapersPicker \
-        VisualizationWallpapers \
-        librs_jni
+        SkateParts
 
 # Audio
 PRODUCT_PACKAGES += \
         audio.primary.skate \
         audio_policy.skate \
+        audio.usb.default \
         audio.a2dp.default \
         libaudioutils
 
-PRODUCT_TAGS += dalvik.gc.type-precise
-DISABLE_DEXPREOPT := false
+# Live Wallpapers
+PRODUCT_PACKAGES += \
+        LiveWallpapersPicker \
+        librs_jni
+
+# Other
+PRODUCT_PACKAGES += \
+        make_ext4fs \
+        setup_fs \
+        dexpreopt
 
 # for bugmailer
 ifneq ($(TARGET_BUILD_VARIANT),user)
-         PRODUCT_PACKAGES += send_bug
+PRODUCT_PACKAGES += send_bug
+
 PRODUCT_COPY_FILES += \
-                 system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
-                 system/extras/bugmailer/send_bug:system/bin/send_bug
+         system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
+         system/extras/bugmailer/send_bug:system/bin/send_bug
 endif
 
+DISABLE_DEXPREOPT := false
+
+PRODUCT_TAGS += dalvik.gc.type-precise
+
+PRODUCT_COPY_FILES += \
+	device/common/gps/gps.conf_EU_SUPL:system/etc/gps.conf
+
+# Enable repeatable keys in CWM
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.cwm.enable_key_repeat=true
+
 PRODUCT_COPY_FILES := \
-        device/zte/skate/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
         device/zte/skate/init.skate.rc:root/init.skate.rc \
         device/zte/skate/init.skate.usb.rc:root/init.skate.usb.rc \
         device/zte/skate/ueventd.skate.rc:root/ueventd.skate.rc \
@@ -87,8 +102,6 @@ PRODUCT_COPY_FILES := \
         device/zte/skate/audio_policy.conf:system/etc/audio_policy.conf \
         device/zte/skate/prebuilt/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc \
         device/zte/skate/prebuilt/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
-        device/zte/skate/prebuilt/start_usb0.sh:system/etc/start_usb0.sh \
-        device/zte/skate/prebuilt/gralloc.skate.so:system/lib/hw/gralloc.skate.so
 
 # WiFi
 PRODUCT_COPY_FILES += \
@@ -98,6 +111,7 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth configuration files
 PRODUCT_COPY_FILES += \
+        device/zte/skate/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
         system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
 
 
@@ -126,4 +140,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.rom=cm10skate
 endif
 
+$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 $(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)

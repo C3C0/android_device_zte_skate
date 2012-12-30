@@ -45,10 +45,10 @@ on boot
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
 
 # Setup android gadget
-   write /sys/module/g_android/parameters/serial_number CM10-Skate
-   write /sys/module/g_android/parameters/product_id 0x1351
+    write /sys/module/g_android/parameters/serial_number CM10-Skate
+    write /sys/module/g_android/parameters/product_id 0x1351
 
-#create  WIFI filesystem structure
+# WiFi filesystem structure
     mkdir /data/misc 01771 system misc
     mkdir /data/misc/wifi 0770 system wifi
     mkdir /data/misc/wifi/sockets
@@ -127,7 +127,7 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -W -c/data/misc
     disabled
     oneshot
 
-service dhcpcd_wlan0 /system/bin/dhcpcd -BKL
+service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
     class main
     disabled
     oneshot
@@ -151,3 +151,19 @@ service akmd /system/bin/akmd8962
     class main
     user root
     oneshot
+
+on property:persist.service.zram=10
+    start compcache
+
+on property:persist.service.zram=30
+    start compcache
+
+on property:persist.service.zram=50
+    start compcache
+
+# compcache - handle at boot
+service compcache /system/bin/handle_compcache
+    class main 	
+    user root
+    group root
+    disabled
