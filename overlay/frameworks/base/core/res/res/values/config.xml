@@ -33,7 +33,8 @@
     <bool name="config_wifiApStartInterface">true</bool>
 
     <string-array translatable="false" name="config_tether_usb_regexs">
-        <item>"usb0"</item>
+         <item>"rndis\\d"</item>
+         <item>"usb\\d"</item>
     </string-array>
 
     <string-array translatable="false" name="config_tether_bluetooth_regexs">
@@ -46,7 +47,8 @@
     <integer-array translatable="false" name="config_tether_upstream_types">
         <item>0</item>
         <item>1</item>
-        <item>4</item>
+        <item>5</item>
+        <item>7</item>
     </integer-array>
 
     <!-- Flag indicating whether the we should enable the automatic brightness in Settings.
@@ -152,11 +154,6 @@
     <!-- Boolean indicating if current platform supports quick switch-on/off of
          Bluetooth Module -->
     <bool name="config_bluetooth_adapter_quick_switch">false</bool>
-
-    <!-- LUN file to be used by legacy USB manager.
-         The existence of this file will be used to determine in the
-         legacy USB manager should be started. -->
-    <string name="config_legacyUmsLunFile">/sys/devices/platform/msm_hsusb/gadget/lun0/file</string>
 
     <!-- Values greater or equal to 0 will enable electronbeam screen-on
          animation with the specified delay (in milliseconds), -1 will disable the animation -->
