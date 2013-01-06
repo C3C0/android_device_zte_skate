@@ -56,7 +56,6 @@ done
 
 # Live wallpaper packages
 PRODUCT_PACKAGES := \\
-    LiveWallpapers \\
     LiveWallpapersPicker
 
 # Publish that we support the live wallpaper feature.
