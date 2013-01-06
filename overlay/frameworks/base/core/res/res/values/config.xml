@@ -87,6 +87,7 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
+        <item>80</item>
         <item>160</item>
         <item>400</item>
         <item>800</item>
@@ -100,13 +101,14 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>35</item>
-        <item>75</item>
+        <item>40</item>
         <item>85</item>
         <item>100</item>
+        <item>120</item>
         <item>150</item>
         <item>190</item>
         <item>210</item>
+        <item>230</item>
     </integer-array>
 
     <!-- Array of output values for button backlight corresponding to the LUX values
@@ -121,6 +123,7 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
+        <item>0</item>
     </integer-array>
 
     <!-- Array of output values for keyboard backlight corresponding to the LUX values
@@ -129,6 +132,7 @@
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessKeyboardBacklightValues">
         <item>5</item>
+        <item>0</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
@@ -177,5 +181,13 @@
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
     <integer name="config_deviceHardwareKeys">7</integer>
+
+    <!-- Timeout in MS for how long you have to long-press the back key to
+         kill the foreground app. -->
+    <integer name="config_backKillTimeout">2000</integer>
+
+    <!-- Base "touch slop" value used by ViewConfiguration as a
+         movement threshold where scrolling should begin. -->
+    <dimen name="config_viewConfigurationTouchSlop">15dp</dimen>
 
 </resources>
