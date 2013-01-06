@@ -25,7 +25,7 @@ debug.hwui.disable_vsync=true
 debug.gr.numframebuffers=3
 
 # Camcorder
-#debug.camcorder.disablemeta=1
+debug.camcorder.disablemeta=1
 
 # USB Mass Storage
 persist.sys.usb.config=mass_storage,adb
