@@ -1,0 +1,40 @@
+From 63f637388eb357a56f9b4feb0aa67730ca837658 Mon Sep 17 00:00:00 2001
+From: Peter Gregus <pete.gregus@gmail.com>
+Date: Sun, 6 Jan 2013 00:43:39 +0100
+Subject: [PATCH] Fix thumbnail generation
+
+Change-Id: If45c01df522421dd56e671cadba36675b83de011
+---
+ .../StagefrightMetadataRetriever.cpp               |    9 +++++----
+ 1 files changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/media/libstagefright/StagefrightMetadataRetriever.cpp b/media/libstagefright/StagefrightMetadataRetriever.cpp
+index 7350125..8c38959 100644
+--- a/media/libstagefright/StagefrightMetadataRetriever.cpp
++++ b/media/libstagefright/StagefrightMetadataRetriever.cpp
+@@ -423,7 +423,11 @@ VideoFrame *StagefrightMetadataRetriever::getFrameAtTime(
+              "trying hardware decoder.");
+ 
+         int32_t flags = 0;
+-#ifdef QCOM_HARDWARE
++#if defined(QCOM_LEGACY_OMX) || !defined(QCOM_HARDWARE)
++        frame = extractVideoFrameWithCodecFlags(&mClient, trackMeta,
++                    source, flags,
++                    timeUs, option);
++#else
+         char value[PROPERTY_VALUE_MAX];
+         if (property_get("ro.board.platform", value, "0")
+             && (!strncmp(value, "msm8660", sizeof("msm8660") - 1) ||
+@@ -433,9 +437,6 @@ VideoFrame *StagefrightMetadataRetriever::getFrameAtTime(
+             flags |= OMXCodec::kEnableThumbnailMode | OMXCodec::kHardwareCodecsOnly;
+         }
+ #endif
+-        frame = extractVideoFrameWithCodecFlags(&mClient, trackMeta,
+-                    source, flags,
+-                    timeUs, option);
+     }
+     return frame;
+ }
+-- 
+1.7.5.4
+
