@@ -130,6 +130,11 @@ PRODUCT_COPY_FILES += \
 
 # Goo Manager support
 ifdef ENABLE_GOO
+ifdef PARANOID
+    GOOROM := "pa-jb"
+else
+    GOOROM := "cm10skate"
+endif
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/app/GooManager.apk:system/app/GooManager.apk
 
@@ -137,7 +142,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.board=skate \
     ro.goo.developerid=C3C0 \
     ro.goo.version=$(shell date +%Y%m%d) \
-    ro.goo.rom=cm10skate
+    ro.goo.rom=$(GOOROM)
 endif
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
