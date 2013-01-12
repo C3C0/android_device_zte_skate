@@ -65,10 +65,6 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
-# USB mounting
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file
-BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
-
 # Browser
 WITH_JIT := true
 HTTP := chrome
@@ -80,7 +76,6 @@ TARGET_FORCE_CPU_UPLOAD := true
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_LEGACY_OMX
-BOARD_NEEDS_MEMORYHEAPPMEM := true
 
 # Graphics
 BOARD_EGL_CFG := device/zte/skate/egl.cfg
@@ -97,7 +92,7 @@ SMALLER_FONT_FOOTPRINT := true
 
 # Camera
 TARGET_DISABLE_ARM_PIE := true
-BOARD_USES_LEGACY_CAMERA := true
+BOARD_NEEDS_MEMORYHEAPPMEM := true
 
 # dev:    size   erasesize  name
 # mtd0: 00500000 00020000 "recovery"
