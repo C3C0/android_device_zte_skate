@@ -82,8 +82,6 @@ endif
 
 DISABLE_DEXPREOPT := false
 
-PRODUCT_TAGS += dalvik.gc.type-precise
-
 PRODUCT_COPY_FILES += \
 	device/common/gps/gps.conf_EU_SUPL:system/etc/gps.conf
 
