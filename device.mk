@@ -82,9 +82,6 @@ endif
 
 DISABLE_DEXPREOPT := false
 
-PRODUCT_COPY_FILES += \
-	device/common/gps/gps.conf_EU_SUPL:system/etc/gps.conf
-
 # Enable repeatable keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.cwm.enable_key_repeat=true
@@ -102,6 +99,7 @@ PRODUCT_COPY_FILES := \
         device/zte/skate/audio_policy.conf:system/etc/audio_policy.conf \
         device/zte/skate/prebuilt/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc \
         device/zte/skate/prebuilt/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
+        device/zte/skate/prebuilt/gps.conf:system/etc/gps.conf
 
 # WiFi
 PRODUCT_COPY_FILES += \
