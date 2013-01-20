@@ -48,6 +48,7 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=skate console=null
 
 # Wifi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+WPA_SUPPLICANT_IBSS_HACK := true
 BOARD_WLAN_DEVICE := bcmdhd
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
