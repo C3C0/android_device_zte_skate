@@ -1,7 +1,8 @@
 [
  {
-   "repository": "zte-kernel-msm7x27",
-   "target_path": "kernel/zte/zte-kernel-msm7x27",
-   "branch": "ics"
+   "account":       "C3C0",
+   "repository":    "zte_skate_35",
+   "target_path":   "kernel/zte/skate",
+   "branch":        "jellybean"
  }
 ]
