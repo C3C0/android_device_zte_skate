@@ -1,8 +1,0 @@
-[
- {
-   "account":       "C3C0",
-   "repository":    "zte_skate_35",
-   "target_path":   "kernel/zte/skate",
-   "branch":        "jellybean"
- }
-]
