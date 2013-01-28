@@ -1,8 +1,7 @@
 import init.skate.usb.rc
 
-on early-init
-    mkdir /storage 0755 system sdcard_r
-    mkdir /storage/sdcard0 0000 system system
+on init
+    mkdir /storage/sdcard0 0000 root root
     symlink /storage/sdcard0 /mnt/sdcard
     symlink /storage/sdcard0 /sdcard
     export EXTERNAL_STORAGE /storage/sdcard0

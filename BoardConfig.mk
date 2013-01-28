@@ -22,8 +22,9 @@ USE_CAMERA_STUB := true
 -include vendor/zte/skate/BoardConfigVendor.mk
 
 # CPU
-TARGET_CPU_ABI := armeabi-v6l
-TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH := arm
+TARGET_CPU_ABI := armeabi
+TARGET_CPU_ABI2 := armeabi-v6l
 TARGET_ARCH_VARIANT := armv6-vfp
 
 # Target and board properties
@@ -82,6 +83,7 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_LEGACY_OMX
 BOARD_EGL_CFG := device/zte/skate/egl.cfg
 USE_OPENGL_RENDERER := true
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
+TARGET_QCOM_DISPLAY_VARIANT := legacy
 COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_COMPAT -DQCOM_NO_SECURE_PLAYBACK
 
 # Bootanimation
