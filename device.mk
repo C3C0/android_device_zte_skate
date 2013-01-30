@@ -105,7 +105,9 @@ PRODUCT_COPY_FILES := \
 PRODUCT_COPY_FILES += \
         device/zte/skate/firmware/fw_4319.bin:system/etc/fw_4319.bin \
         device/zte/skate/firmware/fw_4319_apsta.bin:system/etc/fw_4319_apsta.bin \
-        device/zte/skate/firmware/nv_4319.txt:system/etc/nv_4319.txt
+        device/zte/skate/firmware/nv_4319.txt:system/etc/nv_4319.txt \
+        device/zte/skate/prebuilt/wifi/wpa_cli:system/bin/wpa_cli \
+        device/zte/skate/prebuilt/wifi/wpa_supplicant:system/bin/wpa_supplicant
 
 # Bluetooth configuration files
 PRODUCT_COPY_FILES += \
