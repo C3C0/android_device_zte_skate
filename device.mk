@@ -143,5 +143,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.rom=$(GOOROM)
 endif
 
+# Custom apps for ParanoidJelly2
+ifdef PARANOID
+PRODUCT_COPY_FILES += \
+    device/zte/skate/prebuilt/app/NoFrillsCPU.apk:system/app/NoFrillsCPU.apk
+endif
+
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 $(call inherit-product-if-exists, vendor/zte/skate/skate-vendor.mk)
