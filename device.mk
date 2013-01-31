@@ -129,9 +129,9 @@ PRODUCT_COPY_FILES += \
 # Goo Manager support
 ifdef ENABLE_GOO
 ifdef PARANOID
-    GOOROM := "pa-jb"
+    GOOROM := "pa-jb2"
 else
-    GOOROM := "cm10skate"
+    GOOROM := "cm10.1skate"
 endif
 PRODUCT_COPY_FILES += \
     device/zte/skate/prebuilt/app/GooManager.apk:system/app/GooManager.apk
