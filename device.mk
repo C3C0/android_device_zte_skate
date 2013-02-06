@@ -99,6 +99,8 @@ PRODUCT_COPY_FILES := \
         device/zte/skate/audio_policy.conf:system/etc/audio_policy.conf \
         device/zte/skate/prebuilt/synaptics-rmi4-ts.idc:system/usr/idc/synaptics-rmi4-ts.idc \
         device/zte/skate/prebuilt/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
+        device/zte/skate/prebuilt/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
+        device/zte/skate/prebuilt/Fts-touchscreen.idc:system/usr/idc/Fts-touchscreen.idc \
         device/zte/skate/prebuilt/gps.conf:system/etc/gps.conf
 
 # WiFi
