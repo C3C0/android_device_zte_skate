@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2009, Code Aurora Forum. All rights reserved.
+# Copyright (c) 2009-2010, Code Aurora Forum. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,9 +26,30 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+# Modified by C3C0 for ZTE Skate ICS purposes - 24/04/2012
+# 1) disabled hci_qcom_init that is used to get the correct BT device parameters
+#    to be used with hciattach. Since it has problems running under CFX we just
+#    use parameters explicitly - we know the correct ones anyway...
+#
+# 2) in start_hci_attach() - use BCM sleep switch instead of default bluetooth sleep switch to make
+#    BT release wake lock on suspend
+#    
+
+# DEFAULT BT sleep switch
 BLUETOOTH_SLEEP_PATH=/proc/bluetooth/sleep/proto
+
+# Broadcom bcm2035 sleep switch
+BLUETOOTH_SLEEP_PATH2=/proc/bcm/sleep/proto
+
 LOG_TAG="qcom-bluetooth"
 LOG_NAME="${0}:"
+
+# these are our correct parameters for hciattach
+BTS_DEVICE="/dev/ttyHS0"
+BTS_TYPE="any" 
+BTS_BAUD="3000000"
+
+hciattach_pid=""
 
 loge ()
 {
@@ -43,28 +64,70 @@ logi ()
 failed ()
 {
   loge "$1: exit code $2"
-  setprop bluetooth.status off;
-  exit $2
+  exit $2 
 }
 
-setprop bluetooth.status off
+start_hciattach ()
+{
+  # set default BT switch explicitly to 0 just to be sure
+  # it does not occupy wake IRQ that bcm sleep switch needs
+  echo 0 > $BLUETOOTH_SLEEP_PATH
 
-QSOC_DEVICE=${1:-"/dev/ttyHS0"}
-QSOC_BAUD=${3:-"115200"}
+  # set bcm sleep switch to 1 to allow bluetooth sleep mode
+  echo 1 > $BLUETOOTH_SLEEP_PATH2
 
-# echo 1 > $BLUETOOTH_SLEEP_PATH
+  # exec hciattach with our explicit params
+  /system/bin/hciattach -n -s $BTS_BAUD $BTS_DEVICE $BTS_TYPE &
 
-/system/bin/hci_qcomm_init -d $QSOC_DEVICE -s $QSOC_BAUD 
+  # original call
+  #/system/bin/hciattach -n $BTS_DEVICE $BTS_TYPE $BTS_BAUD &
 
-exit_code_hci_qcomm_init=$?
+  hciattach_pid=$!
+  logi "start_hciattach: pid = $hciattach_pid"
+}
 
-case $exit_code_hci_qcomm_init in
-  0) logi "Bluetooth QSoC firmware download succeeded";;
-  *) failed "Bluetooth QSoC firmware download failed" $exit_code_hci_qcomm_init;;
-esac
+kill_hciattach ()
+{
+  logi "kill_hciattach: pid = $hciattach_pid"
+  ## careful not to kill zero or null!
+  kill -TERM $hciattach_pid
+  echo 0 > $BLUETOOTH_SLEEP_PATH
+  # this shell doesn't exit now -- wait returns for normal exit
+}
 
-setprop bluetooth.status on
+# mimic hciattach options parsing -- maybe a waste of effort
+#USAGE="hciattach [-n] [-p] [-b] [-t timeout] [-s initial_speed] <tty> <type | id> [speed] [flow|noflow] [bdaddr]"
 
-logi "start bluetooth transport"
+#while getopts "blnpt:s:" f
+#do
+#  case $f in
+#  b | l | n | p)  opt_flags="$opt_flags -$f" ;;
+#  t)      timeout=$OPTARG;;
+#  s)      initial_speed=$OPTARG;;
+#  \?)     echo $USAGE; exit 1;;
+#  esac
+#done
+#shift $(($OPTIND-1))
+
+# Note that "hci_qcomm_init -e" prints expressions to set the shell variables
+# BTS_DEVICE, BTS_TYPE, BTS_BAUD, and BTS_ADDRESS.
+
+#eval $(/system/bin/hci_qcomm_init -e && echo "exit_code_hci_qcomm_init=0" || echo "exit_code_hci_qcomm_init=1")
+
+#case $exit_code_hci_qcomm_init in
+#  0) logi "Bluetooth QSoC firmware download succeeded, $BTS_DEVICE $BTS_TYPE $BTS_BAUD $BTS_ADDRESS";;
+#  *) failed "Bluetooth QSoC firmware download failed" $exit_code_hci_qcomm_init;;
+#esac
+
+
+
+# init does SIGTERM on ctl.stop for service
+trap "kill_hciattach" TERM INT
+
+start_hciattach
+
+wait $hciattach_pid
+
+logi "Bluetooth stopped"
 
 exit 0
