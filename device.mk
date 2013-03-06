@@ -65,6 +65,11 @@ PRODUCT_PACKAGES += \
         LiveWallpapersPicker \
         librs_jni
 
+# FM Radio
+PRODUCT_PACKAGES += \
+        libfmradio.si4708 \
+        FmRadioReceiver
+
 # Other
 PRODUCT_PACKAGES += \
         make_ext4fs \
@@ -114,6 +119,10 @@ PRODUCT_COPY_FILES += \
         device/zte/skate/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
         system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf \
         device/zte/skate/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+
+# FM Radio
+PRODUCT_COPY_FILES += \
+        frameworks/native/data/etc/com.stericsson.hardware.fm.receiver.xml:system/etc/permissions/com.stericsson.hardware.fm.receiver.xml
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
