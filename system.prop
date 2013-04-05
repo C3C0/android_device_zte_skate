@@ -44,4 +44,4 @@ dalvik.vm.execution-mode=int:jit
 # zRam
 ro.zram.default=0
 persist.sys.purgeable_assets=1
-sys.mem.max_hidden_apps=5
+sys.mem.max_hidden_apps=8
