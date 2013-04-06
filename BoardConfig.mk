@@ -37,13 +37,14 @@ TARGET_SPECIFIC_HEADER_PATH := device/zte/skate/include
 
 # Recovery
 BOARD_CUSTOM_GRAPHICS := ../../../device/zte/skate/recovery/graphics.c
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_ui.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/zte/skate/recovery/recovery_keys.c
+TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/skate/recovery/recovery_kernel
 TARGET_RECOVERY_INITRC := device/zte/skate/recovery/recovery.rc
+TARGET_RECOVERY_FSTAB := device/zte/skate/recovery/recovery.fstab
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/zte/skate
 TARGET_KERNEL_CONFIG := skate_jb_defconfig
-TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/skate/recovery_kernel
 BOARD_KERNEL_BASE := 0x02600000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=skate console=null
 
